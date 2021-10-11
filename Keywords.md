@@ -1,7 +1,7 @@
-#MQTT Keywords
+# MQTT Keywords
 This is a list of the JSON keywords used in BST900-ESP32
 
-##Command Keywords
+## Command Keywords
 
 
 | Keyword         | Data Type | Range      | Comment                                    |
@@ -33,7 +33,7 @@ This is a list of the JSON keywords used in BST900-ESP32
 | pwm_iout_bias   | float      | Current threshold offset. Normally zero |
 | pwm_iout_step   | float      | Do not change.  Threshold adjustment is automatic. |
 
-##Response Keywords
+## Response Keywords
 
 | Keyword         | Data Type | Range      | Comment                                    |
 | :-------------: | :-------: | :---------- | :---------------------------------------- |
