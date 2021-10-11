@@ -1,6 +1,6 @@
 # BST900-ESP32
 ESP32 firmware to control BST900 Boost Converters remotely
-![BST900-ESP32](../images/IMG_20211011_142715.jpg)
+![BST900-ESP32](https://github.com/delboy711/BST900-ESP32/blob/main/images/IMG_20211011_142715.jpg)
 [BST900](aliexpress.com/item/32838432319.html) boost converters are widely and cheaply available on AliExpress. They are sold under the brand name Ming-He among others, and there are also no-name clones available even cheaper.
 They are claimed to operate up to 15A and 900W, but personally I would not operate them at that power without improvements to the cooling which I have detailed in my BST900 repository.
 
