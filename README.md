@@ -52,8 +52,8 @@ If the keyword `"save":true` is given, all parameters are saved to flash memory 
 ## Hardware Connections
 Connect the TTGO T-Display board to the ESP32 in the following way. BST900 pins are numbered from the top down.
 
-|BST900 Left Hand Socket | TTGO-T-Display Pin | ADS1115 Pin | Function
-| ------- | -------------|-----------------|------------------------------------|
+|BST900 Left Hand Socket |SIgnal Name   | TTGO-T-Display Pin | ADS1115 Pin | Function
+| ------- | -------------|--------------|---------------|---------|--------------------------------------|
 | Pin 1 | Iout Sense | GPIO 38 | Chan 1 | Current sense. Use either ADS115 or ESP32 pins | 
 | Pin 2 | Vout Sense | GPIO 39 | Chan 2 | Voltage out sense. |
 | Pin 3 | Vin Sense  | GPIO 37 | Chan 0 | Voltage in sense. |
@@ -76,8 +76,8 @@ The LED will also serve as a visible indicator when the BST900 is in Constant Vo
 If using ESP32 ADC connect 100nF capacitors from GPIO Pins 37, 38, and 39 to GND.
  
 
-BST900 Right Hand Socket | TTGO-T-Display Pin | ADS1115 Pin | Function
-| ------- | -------------|-----------------|------------------------------------|
+BST900 Right Hand Socket | Signal Name | TTGO-T-Display Pin | ADS1115 Pin | Function
+| ------- | -------------|-------------|------------|------------|-------------------------------------------|
 | Pin 1 | GND (Input) | GND | GND | Ground | 
 | Pin 2 | GND (Input) | GND | GND | Ground |
 | Pin 3 | GND (Output) |    |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
