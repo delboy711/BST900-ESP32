@@ -52,20 +52,20 @@ If the keyword `"save":true` is given, all parameters are saved to flash memory 
 ## Hardware Connections
 Connect the TTGO T-Display board to the ESP32 in the following way. BST900 pins are numbered from the top down.
 
-|BST900 Left Socket |SIgnal Name   | TTGO-T-Display Pin | ADS1115 Pin | Function |
-| ------- | ------------- | -------------- | --------------- | --------- | -------------------------------------- |
-| Pin 1 | Iout Sense | GPIO 38 | Chan 1 | Current sense. Use either ADS115 or ESP32 pins | 
-| Pin 2 | Vout Sense | GPIO 39 | Chan 2 | Voltage out sense. |
-| Pin 3 | Vin Sense  | GPIO 37 | Chan 0 | Voltage in sense. |
-| Pin 4 | Iout PWM   | GPIO 13 |        | Constant Current threshold control |
-| Pin 5 | Vout PWM   | GPIO 15 |        | Voltage out control |
-| Pin 6 | Enable     | GPIO 13 |        | Converter Enable |
-| Pin 7 | CV/CC Indicator | GPIO 27 |   | Constant Voltage/Constant Current Indicator **Not** 3.3V safe|
-| Pin 8 | Fan PWM    | GPIO 2  |        | Fan speed control |
-|       |   SCL      | GPIO 22 | SCL    | I2C Clock |
-|       |   SCD      | GPIO 21 | SCD    | I2C Data |
-|       | ADC Ref    | GPIO 33 | +3.3V  | Connect to 3.3V power rail. Used to compare with NTC temp reading |
-|       | Temp       | GPIO 36 |        | Connect up as +3.3V--10k resistor--GPIO 36--NTC Thermistor--GND |
+|BST900 Left Socket | Signal Name  | TTGO Pin | ADS1115 Pin | Function |
+| ------- | ------------- | -------------- | --------------- | ----------------------------------------------- |
+| Pin 1   | Iout Sense    | GPIO 38        | Chan 1          | Current sense. Use either ADS115 or ESP32 pins | 
+| Pin 2   | Vout Sense    | GPIO 39        | Chan 2          | Voltage out sense. |
+| Pin 3   | Vin Sense     | GPIO 37        | Chan 0          | Voltage in sense. |
+| Pin 4   | Iout PWM      | GPIO 13        |                 | Constant Current threshold control |
+| Pin 5   | Vout PWM      | GPIO 15        |                 | Voltage out control |
+| Pin 6   | Enable        | GPIO 13        |                 | Converter Enable |
+| Pin 7   | CV/CC Indicator | GPIO 27      |                 | Constant Voltage/Constant Current Indicator **Not** 3.3V safe|
+| Pin 8   | Fan PWM       | GPIO 2         |                 | Fan speed control |
+|         |   SCL         | GPIO 22        | SCL             | I2C Clock |
+|         |   SCD         | GPIO 21        | SCD             | I2C Data |
+|         | ADC Ref       | GPIO 33        | +3.3V           | Connect to 3.3V power rail. Used to compare with NTC temp reading |
+|         | Temp          | GPIO 36        |                 | Connect up as +3.3V--10k resistor--GPIO 36--NTC Thermistor--GND |
 
 Thermistor is [10K nominal at 25deg C Beta Coefficient=3950](https://lcsc.com/product-detail/NTC-Thermistors_Nanjing-Shiheng-Elec-MF52A103J3950-A1_C123378.html) or similar.
 **Note:** Pin7 CV/VV is not 3.3V safe. At times 5V may appear on this pin. It must therefore be dropped down before the GPIO27 pin. A convenient method of dropdown is Pin7--3.3K resistor--GPIO27--Blue LED--GND
@@ -76,16 +76,16 @@ The LED will also serve as a visible indicator when the BST900 is in Constant Vo
 If using ESP32 ADC connect 100nF capacitors from GPIO Pins 37, 38, and 39 to GND.
  
 
-BST900 Right Socket | Signal Name | TTGO-T-Display Pin | ADS1115 Pin | Function
+| BST900 Right Socket | Signal Name | TTGO Pin | ADS1115 Pin | Function |
 | ------- | ------------- | ------------- | ------------ | ------------ | ------------------------------------------- |
-| Pin 1 | GND (Input) | GND | GND | Ground | 
-| Pin 2 | GND (Input) | GND | GND | Ground |
-| Pin 3 | GND (Output) |    |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
-| Pin 4 | GND (Output) |    |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
-| Pin 5 | +5V          | +5V  |    | 5V Power rail  |
-| Pin 6 | +5V          | +5V  |    | 5V Power rail  |
-| Pin 7 |              |      |    | Tx pin (not used) |
-| Pin 8 |              |      |    | Rx pin (not used) |
+| Pin 1 | GND (Input)  | GND   | GND | Ground | 
+| Pin 2 | GND (Input)  | GND   | GND | Ground |
+| Pin 3 | GND (Output) |       |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
+| Pin 4 | GND (Output) |       |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
+| Pin 5 | +5V          | +5V   |     | 5V Power rail  |
+| Pin 6 | +5V          | +5V   |     | 5V Power rail  |
+| Pin 7 |              |       |     | Tx pin (not used) |
+| Pin 8 |              |       |     | Rx pin (not used) |
 |       |              | +3.3V | Vcc | ADS1115 power |
 
 A 470 uF capacitor should be connected between +5V and GND as well as a 100nF capacitor.

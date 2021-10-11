@@ -57,7 +57,7 @@ If using mosquitto as an MQTT client the command would look like this:-
    calibrating output voltage.
   
 ### Calibrating Output Constant Current Threshold.
-  Calibration of the constant current threshold is fully automatic. Although there is a parameter 'pwm_iout_step' it has little effect and should not be adjusted.
+  Calibration of the constant current threshold is fully automatic.
   So long as the measured Iout is accurate then the constant current threshold should also be accurate.
   The command to set a constant current threshold would look like :-
   
