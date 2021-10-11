@@ -77,7 +77,7 @@ If using ESP32 ADC connect 100nF capacitors from GPIO Pins 37, 38, and 39 to GND
  
 
 | BST900 Right Socket | Signal Name | TTGO Pin | ADS1115 Pin | Function |
-| ------- | ------------- | ------------- | ------------ | ------------ | ------------------------------------------- |
+| ------- | ------------- | ------------- | ------------ | ----------------------------------------------------- |
 | Pin 1 | GND (Input)  | GND   | GND | Ground | 
 | Pin 2 | GND (Input)  | GND   | GND | Ground |
 | Pin 3 | GND (Output) |       |     | Do NOT CONNECT Connecting GNDs together disrupts Iout sense |
@@ -90,6 +90,6 @@ If using ESP32 ADC connect 100nF capacitors from GPIO Pins 37, 38, and 39 to GND
 
 A 470 uF capacitor should be connected between +5V and GND as well as a 100nF capacitor.
 
-A circuit diagram of how to connect a TTGO T-Display to BST900 is in the hardware folder.
+A [circuit diagram](https://github.com/delboy711/BST900-ESP32/blob/main/hardware/BST900-ESP32/BST900-ESP32.pdf) of how to connect a TTGO T-Display to BST900 is in the hardware folder.
 
 
