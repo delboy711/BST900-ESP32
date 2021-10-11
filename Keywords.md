@@ -30,8 +30,7 @@ This is a list of the JSON keywords used in BST900-ESP32
 | iout_res        | float      | Measured Iout units per mV |
 | pwm_vout_bias   | float      | Vout offset. Normally zero |
 | pwm_vout_step   | float      | Steps per mV |
-| pwm_iout_bias   | float      | Current threshold offset. Normally zero |
-| pwm_iout_step   | float      | Do not change.  Threshold adjustment is automatic. |
+
 
 ## Response Keywords
 
