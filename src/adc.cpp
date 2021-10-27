@@ -101,7 +101,7 @@ void ADC_Task_function( void * parameter) {
   ledcAttachPin(PWM_I, 3);
   ledcWrite(0, settings.Vpwm);              //Restore saved output voltage
   ledcWrite(3, 10);                         //Prime current limit
-  digitalWrite(ENA_PIN, settings.enable);   //Restore saved enable state
+  digitalWrite(ENA_PIN, settings.enable);   //Restore saved enable state 
 
 #ifdef HAS_ADS1115
   Wire.begin();
@@ -114,6 +114,7 @@ void ADC_Task_function( void * parameter) {
   for (;;) {     //Task loop
   start_time = micros();    //Note time we start loop in microseconds
   uint8_t j = chan_seq[chanindex];
+  uint16_t voltage_pwm, current_pwm;
 
 #ifdef HAS_ADS1115
   state.adc_chan[j].sample = adc.getResult_mV();   //Get latest sample from ADS1115
@@ -128,7 +129,7 @@ void ADC_Task_function( void * parameter) {
 	switch (j) {
     case 0: //This sample is for Vin
       state.adc_chan[j].smoothed = VinFilter.filter(state.adc_chan[0].sample);
-      Vin = (int16_t)(((float)(state.adc_chan[j].sample) - settings.vin_bias) * settings.vin_res);  //Get Vin in mV.
+      Vin = (uint16_t)(((float)(state.adc_chan[j].sample) - settings.vin_bias) * settings.vin_res);  //Get Vin in mV.
       state.Vin = Vin;      //Save state of Vin
       state.Vin_smoothed = round(((state.adc_chan[j].smoothed) - settings.vin_bias) * settings.vin_res);
       break;
@@ -175,7 +176,8 @@ void ADC_Task_function( void * parameter) {
         
     if(Ipwm > 0xefff) Ipwm = 0;	//Must have underflowed
     if(Ipwm > 0x1fff) Ipwm = 0x1fff;	//Must have overflowed
-    ledcWrite(3, Ipwm);   // Write PWM to current control
+    current_pwm = ( settings.enable) ? Ipwm : 0;     //Enable Pin on BST900 does not appear to work so force current to zero when not enabled.
+    ledcWrite(3, current_pwm);   // Write PWM to current control
     state.Iout = Iout;    //Save state of Iout
     state.Iout_smoothed = round(((state.adc_chan[j].smoothed) - settings.iout_bias) * settings.iout_res);
 		break;
@@ -183,7 +185,7 @@ void ADC_Task_function( void * parameter) {
 	case 2: // This sample is for Vout
     state.adc_chan[j].smoothed = VoutFilter.filter(state.adc_chan[j].sample);
 		Vpwm = ledcRead(0); //Get voltage PWM duty cycle
-		Vout = (int32_t)(((float)(state.adc_chan[j].sample) - settings.vout_bias) * settings.vout_res);  //Get Vout in mV.
+		Vout = (uint32_t)(((float)(state.adc_chan[j].sample) - settings.vout_bias) * settings.vout_res);  //Get Vout in mV.
 
 		if ( !state.constant_current ) {
       distance =  settings.Vout - Vout; //distance from target voltaget in mV.
@@ -198,7 +200,8 @@ void ADC_Task_function( void * parameter) {
       if (Vpwm < settings.Vpwm - 64) Vpwm = settings.Vpwm - 64;//Set limits for Vpwm auto adjustment
       if (Vpwm > settings.Vpwm + 64) Vpwm = settings.Vpwm + 64;
       if(Vpwm > 0x1fff) Vpwm = 0x1fff;     //Limit output as a precaution to avoid setting voltage too high
-			ledcWrite(0, Vpwm);   // PWM to voltage control
+      voltage_pwm = ( settings.enable) ? Vpwm : 0;     //Enable Pin on BST900 does not appear to work so force voltage to zero when not enabled.
+			ledcWrite(0, voltage_pwm);   // PWM to voltage control
 		}
     state.Vout = Vout;      //Save state of Vout
     state.Vout_smoothed = round(((state.adc_chan[j].smoothed) - settings.vout_bias) * settings.vout_res);

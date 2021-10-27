@@ -45,9 +45,10 @@ void disp_voltage() {
       tft.setCursor(0, 46, 4);   tft.setTextColor(TFT_GREENYELLOW, TFT_BLACK); tft.setTextSize(2); tft.print("Vout "); tft.setTextFont(6);
       tft.setTextSize(1); sprintf(charbuff, (state.Vout_smoothed < 100000) ? "%5.2f  " : "%5.1f  ", state.Vout_smoothed/1000.0); tft.print(charbuff);
 
+      if(settings.enable) {         //Show Vset when enabled, and "Disabled" when not
       tft.setCursor(0, 92, 4);   tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.setTextSize(2); tft.print("Vset "); tft.setTextFont(6);
       tft.setTextSize(1); sprintf(charbuff, (settings.Vout < 100000) ? "%5.2f  " : "%5.1f  ",(float)settings.Vout/1000.0); tft.print(charbuff);
- 
+      } else tft.setCursor(0, 92, 4);   tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.setTextSize(2); tft.print("Disabled");
 }
 
 void disp_current() {
@@ -63,9 +64,11 @@ void disp_current() {
       tft.setCursor(0, 46, 4);
       if (state.cc_smoothed) tft.setTextColor(TFT_ORANGE, TFT_BLACK);
       else tft.setTextColor(TFT_GREENYELLOW, TFT_BLACK);
-       tft.setTextSize(2); tft.print("Iout "); tft.setTextFont(6); tft.setTextSize(1); sprintf(charbuff, "%5.2f ", state.Iout_smoothed/1000.0); tft.print(charbuff);
+      tft.setTextSize(2); tft.print("Iout "); tft.setTextFont(6); tft.setTextSize(1); sprintf(charbuff, "%5.2f ", state.Iout_smoothed/1000.0); tft.print(charbuff);
+      if(settings.enable) {         //Show Iset when enabled, and "Disabled" when not
       tft.setCursor(0, 92, 4);    tft.setTextColor(TFT_SKYBLUE, TFT_BLACK);  tft.setTextSize(2); tft.print("Iset ");
       tft.setTextFont(6); tft.setTextSize(1); sprintf(charbuff, "%5.2f ",(float)settings.Iout/1000.0); tft.print(charbuff); 
+      } else tft.setCursor(0, 92, 4);   tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.setTextSize(2); tft.print("Disabled");
 
 }
 
@@ -87,8 +90,10 @@ void disp_combined() {
 
       tft.setCursor(132, 46, 2);  tft.setTextColor(TFT_BLUE, TFT_BLACK); tft.print("Io "); sprintf(charbuff, " %4.2f ", state.Iout_smoothed/1000.0); tft.print(charbuff);
 
+      if(settings.enable) {         //Show Vset when enabled, and "Disabled" when not
       tft.setCursor(0, 92, 2);  tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.print("Vs ");
       sprintf(charbuff, "%5.1f ", (float)settings.Vout/1000.0); tft.print(charbuff); 
+      } else tft.setCursor(0, 92, 2);  tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.print("Disabled");
 
       tft.setCursor(132, 92, 2); tft.setTextColor(TFT_CYAN, TFT_BLACK); tft.print("Io "); sprintf(charbuff, " %4.2f ", settings.Iout/1000.0); tft.print(charbuff); 
 }

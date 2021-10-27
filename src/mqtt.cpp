@@ -111,10 +111,10 @@ void onMqttMessage(char* topic, char* payload, AsyncMqttClientMessageProperties 
     settings.display_mode = mqtt_json["display"];                                      //Set TFT display mode
   }
 
-  if(mqtt_json.containsKey("enable")  && state.overtemperature == false) {             //Enable/Disable Converter
+  if(mqtt_json.containsKey("enable")) {             //Enable/Disable Converter
     if(mqtt_json["enable"] == true) {
       settings.enable = true;
-      digitalWrite(ENA_PIN, 1);
+      if(state.overtemperature == false ) digitalWrite(ENA_PIN, 1);
     } else {
       settings.enable = false;
       digitalWrite(ENA_PIN, 0);

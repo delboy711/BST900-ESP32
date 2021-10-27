@@ -148,11 +148,11 @@ struct Adcdata {
 #endif
 
 struct Mystate {                    //Current State of Controller
-    int16_t Vin=0;                  // Actual Voltage In in mV
-    int32_t Vout=0;                 // Actual Voltage Out in mV.  32 bits because it can exceed 65V
+    uint16_t Vin=0;                  // Actual Voltage In in mV
+    uint32_t Vout=0;                 // Actual Voltage Out in mV.  32 bits because it can exceed 65V
     int16_t Iout=0;                 // Actual Current out in mA
-    int16_t Vin_smoothed=0;         // Smoothed Voltage In in mV
-    int32_t Vout_smoothed=0;        // Smoothed Voltage Out in mV.  32 bits because it can exceed 65V
+    uint16_t Vin_smoothed=0;         // Smoothed Voltage In in mV
+    uint32_t Vout_smoothed=0;        // Smoothed Voltage Out in mV.  32 bits because it can exceed 65V
     int16_t Iout_smoothed=0;        // Smoothed Current out in mA
     int16_t constant_current=0;     // Constant current inout
     int16_t cc_smoothed =0;            //Smoothed constant current indicator
