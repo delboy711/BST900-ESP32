@@ -85,8 +85,8 @@ float ntc_temp(float vref  ) {    //vref= power rail sample, series = series res
 }
 
 void Fan_Task_function( void * parameter) {
-  ledcSetup(14, 25, 8);             // Create 8 bit resolution@ 20Khz  PWM for Fan
-  ledcAttachPin(FAN_PIN, 14);          //Attach PWM channel to fan pin
+  ledcSetup(14, 25, 8);                     // Create 8 bit resolution@ 25Hz  PWM for Fan
+  ledcAttachPin(FAN_PIN, 14);               //Attach PWM channel to fan pin
   float vref_sample = readADC(ADC_VREF);    //Measure 3.3V rail voltage as a reference
   unsigned long overtemp_timer=millis();
 
