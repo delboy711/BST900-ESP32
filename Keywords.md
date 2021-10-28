@@ -6,7 +6,7 @@ This is a list of the JSON keywords used in BST900-ESP32
 
 | Keyword         | Data Type | Range      | Comment                                    |
 | :-------------: | :-------: | :---------- | :---------------------------------------- |
-| amps            | integer   | 1-15000     | Constant current threshold in mA |
+| amps            | float      | 1-15.0     | Constant current threshold in A |
 | debug           | boolean   | true/false  | Puts extra debug data on serial interface |
 | display         | integer   | 0 to 4      | Contents of TFT display. 0=blank, 1=Voltages, 2=Current, 3=Combined, 4=Cycle between 1 and 2 |
 | enable          | boolean   | true/false  | Enable/disable boost conversion |
@@ -16,7 +16,7 @@ This is a list of the JSON keywords used in BST900-ESP32
 | overtemp_thresh | integer   | 20-255      | Raise alarm and disable converter for 3 mins if this temperature is exceeded |
 | restart         | boolean   | true/false  | Restart controller |
 | save            | boolean   | true/false  | Save all parameters to Flash memory |
-| volts           | integer   | 8000-120000 | Output Voltage in mV |
+| volts           | float      | 8.0-120.0   | Output Voltage in V |
 
 ### Calibration Keywords
 

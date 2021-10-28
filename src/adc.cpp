@@ -176,7 +176,7 @@ void ADC_Task_function( void * parameter) {
         
     if(Ipwm > 0xefff) Ipwm = 0;	//Must have underflowed
     if(Ipwm > 0x1fff) Ipwm = 0x1fff;	//Must have overflowed
-    current_pwm = ( settings.enable) ? Ipwm : 0;     //Enable Pin on BST900 does not appear to work so force current to zero when not enabled.
+    current_pwm = ( settings.enable && !state.overtemperature) ? Ipwm : 0;     //Enable Pin on BST900 does not appear to work so force current to zero when not enabled.
     ledcWrite(3, current_pwm);   // Write PWM to current control
     state.Iout = Iout;    //Save state of Iout
     state.Iout_smoothed = round(((state.adc_chan[j].smoothed) - settings.iout_bias) * settings.iout_res);
@@ -200,7 +200,7 @@ void ADC_Task_function( void * parameter) {
       if (Vpwm < settings.Vpwm - 64) Vpwm = settings.Vpwm - 64;//Set limits for Vpwm auto adjustment
       if (Vpwm > settings.Vpwm + 64) Vpwm = settings.Vpwm + 64;
       if(Vpwm > 0x1fff) Vpwm = 0x1fff;     //Limit output as a precaution to avoid setting voltage too high
-      voltage_pwm = ( settings.enable) ? Vpwm : 0;     //Enable Pin on BST900 does not appear to work so force voltage to zero when not enabled.
+      voltage_pwm = ( settings.enable && !state.overtemperature) ? Vpwm : 0;     //Enable Pin on BST900 does not appear to work so force voltage to zero when not enabled.
 			ledcWrite(0, voltage_pwm);   // PWM to voltage control
 		}
     state.Vout = Vout;      //Save state of Vout

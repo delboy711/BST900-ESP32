@@ -86,16 +86,16 @@ void disp_combined() {
       sprintf(charbuff, "%5.1f ", state.Vin_smoothed/1000.0); tft.print(charbuff); 
 
       tft.setCursor(0, 46, 2);  tft.setTextColor(TFT_GREENYELLOW, TFT_BLACK);  tft.print("Vo ");
-      sprintf(charbuff, "%5.1f ", state.Vout_smoothed/1000.0); tft.print(charbuff);
+      sprintf(charbuff, "%5.1f  ", state.Vout_smoothed/1000.0); tft.print(charbuff);
 
-      tft.setCursor(132, 46, 2);  tft.setTextColor(TFT_BLUE, TFT_BLACK); tft.print("Io "); sprintf(charbuff, " %4.2f ", state.Iout_smoothed/1000.0); tft.print(charbuff);
+      tft.setCursor(132, 46, 2);  tft.setTextColor(TFT_BLUE, TFT_BLACK); tft.print("Io "); sprintf(charbuff, " %4.1f ", state.Iout_smoothed/1000.0); tft.print(charbuff);
 
       if(settings.enable) {         //Show Vset when enabled, and "Disabled" when not
       tft.setCursor(0, 92, 2);  tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.print("Vs ");
-      sprintf(charbuff, "%5.1f ", (float)settings.Vout/1000.0); tft.print(charbuff); 
+      sprintf(charbuff, "%5.1f  ", (float)settings.Vout/1000.0); tft.print(charbuff); 
       } else tft.setCursor(0, 92, 2);  tft.setTextColor(TFT_SKYBLUE, TFT_BLACK); tft.print("Disabled");
 
-      tft.setCursor(132, 92, 2); tft.setTextColor(TFT_CYAN, TFT_BLACK); tft.print("Io "); sprintf(charbuff, " %4.2f ", settings.Iout/1000.0); tft.print(charbuff); 
+      tft.setCursor(132, 92, 2); tft.setTextColor(TFT_CYAN, TFT_BLACK); tft.print("Is "); sprintf(charbuff, " %4.1f ", settings.Iout/1000.0); tft.print(charbuff); 
 }
 
 

@@ -99,7 +99,7 @@ void Fan_Task_function( void * parameter) {
     state.temperature = round(ntc_temp(vref_sample));
     if (state.temperature > settings.overtemp_thresh) {    //Temperature too high!!!
       state.overtemperature = true;  //Raise alarm
-      digitalWrite(ENA_PIN, 0);     //Disable Controller
+      digitalWrite(ENA_PIN, 0);     //Disable Controller NOTE: ENA pin does not actually work in BST900 so adc routine has to test if alarm state and disable PWM signal
       overtemp_timer = millis();    //Make note of time
     } else {
       if(state.overtemperature) {   //Still in alarm state
