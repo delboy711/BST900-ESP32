@@ -152,14 +152,26 @@ void ADC_Task_function( void * parameter) {
       if ( state.constant_current ) {
 			  //Increase PWM pulse proportionally if in CC and current below target.
 			  if ( Iout < settings.Iout ) {  //Compare to target current if in CC node           
-           Ipwm += (distance >> 5)+1;    //Increase current pulse proportional to distance between current and target
+          //Increase current pulse proportional to distance between current and target
+          if (distance > 2048) Ipwm += 24;
+           else if (distance > 1024) Ipwm += 16;
+           else if (distance > 512) Ipwm += 8;
+           else if (distance > 256) Ipwm += 4;
+           else if (distance > 128) Ipwm += 3;
+           else if (distance > 64 ) Ipwm += 2;
+           else if (distance > 10 ) Ipwm +=1;
 			  }
         
         // Reduce PWM pulse if in CC mode and current is above target
 			  if ( Iout > settings.Iout + 10 && Iout > 0 ) {
-				  if ((distance >> 5)+1 < Ipwm) {		//Avoid underflow
-				  	Ipwm -= (distance >> 5)+1;  //Down speed proportional to distance between current and target
-				  } else Ipwm -= 1;
+          //Down speed proportional to distance between current and target
+          if (distance > 2048) Ipwm -= 24;
+           else if (distance > 1024) Ipwm -= 16;
+           else if (distance > 512) Ipwm -= 8;
+           else if (distance > 256) Ipwm -= 4;
+           else if (distance > 128) Ipwm -= 3;
+           else if (distance > 64 ) Ipwm -= 2;
+           else Ipwm -=1;
 			  }
 		  }       
          

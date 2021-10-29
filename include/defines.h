@@ -31,13 +31,13 @@
 #ifdef HAS_ADS1115                            //Uses ADS1115 ADC converter instead of ESP32 internal ADC
 // THESE PARAMETERS FOR ADS1115 ADC	
 #define Vin_BIAS   	    0.0	    //TBD               ADS1115
-#define Vin_RES   	    34.335	//Provisional        ADS1115
+#define Vin_RES   	    34.517   //Was 34.335	//Provisional        ADS1115
 	
 #define Vout_BIAS		0.0     //TBD               ADS1115
-#define Vout_RES 		67.894	// Provisional      ADS1115
+#define Vout_RES 		67.599  // was 67.894	// Provisional      ADS1115
 
-#define Iout_BIAS		41.0	// Provisional      ADS1115
-#define Iout_RES 		5.065	// TBD              ADS1115
+#define Iout_BIAS		48      // was 41.0	// Provisional      ADS1115
+#define Iout_RES 		5.250   // was 5.065	// TBD              ADS1115
 
 #define ADS_Ch2_Range ADS1115_RANGE_2048
 #define ADS_Ch1_Range ADS1115_RANGE_2048
