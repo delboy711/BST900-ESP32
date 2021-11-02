@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name BST900-ESP32)(type Legacy)(uri ${KIPRJMOD}/BST900-ESP32.lib)(options "")(descr ""))
+)
